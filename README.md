@@ -210,7 +210,7 @@ hwcp-agent start
 
 This platform is built on security-first principles:
 
-- All API endpoints require authentication (JWT ******
+- All API endpoints require authentication (JWT tokens with 30-minute expiry)
 - Security headers applied to all responses (HSTS, CSP, X-Frame-Options, etc.)
 - All requests logged for audit purposes
 - Secrets managed via environment variables (never hardcoded)

@@ -14,7 +14,9 @@ jobs:
     name: Dependency Vulnerability Scan
     runs-on: ubuntu-latest
 
-    steps:
+    permissions:
+      contents: read
+      security-events: write
       - uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
@@ -37,6 +39,9 @@ jobs:
     name: Secret Detection
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -55,6 +60,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
+      contents: read
       security-events: write
 
     steps:

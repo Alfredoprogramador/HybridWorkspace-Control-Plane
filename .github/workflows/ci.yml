@@ -10,6 +10,9 @@ env:
   REGISTRY: ghcr.io
   IMAGE_PREFIX: ${{ github.repository_owner }}/hwcp
 
+permissions:
+  contents: read
+
 jobs:
   # ── Backend Tests ──────────────────────────────────────────────────────────
   backend-test:
@@ -51,7 +54,7 @@ jobs:
 
       - name: Run tests
         env:
-          DATABASE_URL: ******localhost:5432/hwcp_test
+          DATABASE_URL: postgresql+asyncpg://hwcp:testpassword@localhost:5432/hwcp_test
           JWT_SECRET: test-jwt-secret-32-characters-min
           SECRET_KEY: test-secret-key-32-characters-min
         run: pytest --cov=app --cov-report=xml -v

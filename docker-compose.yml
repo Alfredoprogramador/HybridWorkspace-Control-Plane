@@ -47,7 +47,7 @@ services:
     container_name: hwcp-backend
     environment:
       - ENVIRONMENT=development
-      - DATABASE_URL=******postgres:5432/hwcp
+      - DATABASE_URL=postgresql+asyncpg://hwcp:${POSTGRES_PASSWORD:-hwcp_dev_password}@postgres:5432/hwcp
       - REDIS_URL=redis://:${REDIS_PASSWORD:-hwcp_redis_dev}@redis:6379/0
       - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
       - SECRET_KEY=${SECRET_KEY:-change-me-in-production}
