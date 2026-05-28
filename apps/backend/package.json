@@ -1,0 +1,12 @@
+{
+  "name": "@hwcp/backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload",
+    "start": "uvicorn app.main:app --host 0.0.0.0 --port 8000",
+    "test": "pytest --cov=app --cov-report=term-missing",
+    "lint": "ruff check app tests",
+    "format": "ruff format app tests"
+  }
+}
