@@ -1,7 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { AlertTriangle, Info, CheckCircle } from 'lucide-react';
 
-interface SecurityEvent {
+export interface SecurityEvent {
   id: string;
   type: 'alert' | 'info' | 'success';
   message: string;

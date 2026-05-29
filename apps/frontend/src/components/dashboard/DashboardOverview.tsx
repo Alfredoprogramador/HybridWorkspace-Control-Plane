@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ComplianceChart } from './ComplianceChart';
 import { SecurityEventsFeed } from './SecurityEventsFeed';
+import type { SecurityEvent } from './SecurityEventsFeed';
 
 const stats = [
   {
@@ -37,7 +38,7 @@ const stats = [
   },
 ];
 
-const recentEvents = [
+const recentEvents: SecurityEvent[] = [
   {
     id: '1',
     type: 'alert',

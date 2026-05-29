@@ -22,18 +22,22 @@ conditional_requirements := {
 
 # Calculate compliance score (0-100)
 compliance_score := score if {
-    checks := [
-        1 | input.device.disk_encrypted == true,
-        1 | input.device.antivirus_enabled == true,
-        1 | input.device.os_up_to_date == true,
-        1 | input.device.firewall_enabled == true,
-        1 | input.device.screen_lock_enabled == true,
-    ]
-    score := count([c | c := checks[_]; c == 1]) * 20
+    passed_checks := {
+        "disk_encrypted" | input.device.disk_encrypted == true
+    } | {
+        "antivirus_enabled" | input.device.antivirus_enabled == true
+    } | {
+        "os_up_to_date" | input.device.os_up_to_date == true
+    } | {
+        "firewall_enabled" | input.device.firewall_enabled == true
+    } | {
+        "screen_lock_enabled" | input.device.screen_lock_enabled == true
+    }
+    score := count(passed_checks) * 20
 }
 
 # Determine trust level
-trust_level := "trusted" if {
+is_trusted if {
     input.device.disk_encrypted == true
     input.device.antivirus_enabled == true
     input.device.os_up_to_date == true
@@ -41,15 +45,22 @@ trust_level := "trusted" if {
     input.device.screen_lock_enabled == true
 }
 
-trust_level := "conditional" if {
-    not trust_level == "trusted"
+is_conditional if {
+    not is_trusted
     input.device.disk_encrypted == true
     input.device.firewall_enabled == true
 }
 
+trust_level := "trusted" if is_trusted
+
+trust_level := "conditional" if {
+    not is_trusted
+    is_conditional
+}
+
 trust_level := "untrusted" if {
-    not trust_level == "trusted"
-    not trust_level == "conditional"
+    not is_trusted
+    not is_conditional
 }
 
 # Is the device compliant (score >= 80)?
