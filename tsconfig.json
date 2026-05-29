@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@hwcp/shared": ["packages/shared/src"],
+      "@hwcp/zero-trust": ["packages/zero-trust/src"],
+      "@hwcp/collaboration": ["packages/collaboration/src"],
+      "@hwcp/ai-policies": ["packages/ai-policies/src"]
+    }
+  },
+  "exclude": ["node_modules", "dist", ".next", "**/*.spec.ts", "**/*.test.ts"]
+}
